@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMLOCK PRO | V2.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #050505; color: white; font-family: sans-serif; }
+        .neon-glow { border: 1px solid #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.2); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .btn-inject { background: linear-gradient(45deg, #ff0055, #ff0080); transition: 0.3s; }
+        .btn-inject:active { transform: scale(0.95); filter: brightness(1.2); }
+    </style>
+</head>
+<body class="flex flex-col items-center p-6">
+    <div class="w-full max-w-md">
+        <div class="flex justify-between items-center mb-10">
+            <h1 class="text-2xl font-black tracking-widest text-[#ff0055]">AIMLOCK PRO</h1>
+            <span class="bg-[#ff0055] text-[10px] px-2 py-1 rounded-full font-bold">STABLE</span>
+        </div>
+
+        <div class="glass-card p-6 mb-6 neon-glow">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="text-sm text-gray-400">Sistema Operacional: Ativo</span>
+            </div>
+            <select class="w-full bg-black/50 border border-white/10 p-4 rounded-xl mb-4">
+                <option>iPhone 17 Pro Max (Optimized)</option>
+                <option>Samsung S24 Ultra</option>
+                <option>Xiaomi Poco F5</option>
+            </select>
+            <button onclick="inject()" id="btn" class="w-full btn-inject p-4 rounded-xl font-bold uppercase tracking-widest">Injetar Calibração</button>
+        </div>
+
+        <div id="loader" class="hidden glass-card p-10 text-center">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-[#ff0055] mb-4"></div>
+            <p id="load-text" class="text-sm italic text-pink-300">Iniciando bypass...</p>
+        </div>
+    </div>
+
+    <script>
+        function inject() {
+            // Haptic feedback (Vibration)
+            if (window.navigator.vibrate) window.navigator.vibrate([50, 30, 50]);
+            
+            document.getElementById('btn').style.display = 'none';
+            document.getElementById('loader').classList.remove('hidden');
+            
+            const logs = ["Analisando Hardware...", "Calibrando Touch...", "Otimizando FPS...", "Finalizado!"];
+            let i = 0;
+            const interval = setInterval(() => {
+                document.getElementById('load-text').innerText = logs[i];
+                i++;
+                if (i === logs.length) {
+                    clearInterval(interval);
+                    alert("Configuração Aplicada com Sucesso!");
+                    location.reload();
+                }
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
